@@ -1,0 +1,33 @@
+.wrapper {
+	display: flex;
+	box-sizing: border-box;
+	width: 100%;
+	height: 100%;
+	background: inherit;
+	border-radius: 15px;
+	border: 1px solid rgba(43, 43, 43, 0.568);
+	position: absolute;
+	overflow: hidden;
+
+	.homeContainer {
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		width: 100vw;
+		height: 100vh;
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: -1;
+		filter: brightness(60%) blur(5px);
+	}
+
+	.homeContent {
+		width: 100vw;
+		height: 100vh;
+		border-radius: 15px;
+		background: inherit;
+		box-shadow: inset 0 0 0 3000px rgba(61, 61, 61, 0.192);
+	}
+	
+}
