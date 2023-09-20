@@ -3,6 +3,7 @@ import styles from './Home.module.scss'
 import background from '../../assets/images/background.gif'
 import NavigationBar from '../../components/layout/NavigationBar/NavigationBar'
 import UserMenu from '../../components/UserMenu/UserMenu'
+import SearchInput from '../../components/Search/SearchInput'
 
 const Home: FC = () => {
 	return (
@@ -13,7 +14,8 @@ const Home: FC = () => {
 				style={{ backgroundImage: `url(${background})` }}
 			></div>
 			<div className={styles.homeContent}>
-				<UserMenu className={styles.user}/>
+				<SearchInput className={styles.searchInput}/>
+				<UserMenu className={styles.user} />
 			</div>
 		</div>
 	)

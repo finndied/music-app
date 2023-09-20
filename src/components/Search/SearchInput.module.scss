@@ -1,0 +1,29 @@
+.searchInput {
+	display: flex;
+	align-items: flex-end;
+	.input {
+		position: relative;
+		color: white;
+		border-radius: 14px;
+		padding: 12px;
+		width: 400px;
+		outline: none;
+		border: 1px solid gray;
+      background: inherit;
+		box-shadow: inset 0 0 0 3000px rgba(61, 61, 61, 0.192);
+	}
+	::placeholder {
+		color: white;
+	}
+	.button {
+      cursor: pointer;
+		margin-left: -40px;
+		z-index: 2;
+		font-size: 20px;
+      background: inherit;
+		border: none;
+		svg {
+			margin-bottom: 4px;
+		}
+	}
+}
