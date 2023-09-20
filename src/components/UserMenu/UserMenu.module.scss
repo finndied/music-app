@@ -1,0 +1,24 @@
+.avatarImage {
+	border: 1px solid gray;
+	width: 50px;
+	border-radius: 50%;
+	cursor: pointer;
+}
+.menu {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	position: absolute;
+	background: inherit;
+	padding: 20px;
+	right: 2px;
+	border-radius: 10px;
+	box-shadow: inset 0 0 0 3000px #6f6f6fd1;
+	div {
+		cursor: pointer;
+		&:hover {
+			transition: color 0.1s ease 0s;
+			color: rgb(193, 193, 193);
+		}
+	}
+}
