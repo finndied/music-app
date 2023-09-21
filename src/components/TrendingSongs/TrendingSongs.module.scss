@@ -1,0 +1,75 @@
+.tracks {
+	display: flex;
+	flex-direction: row;
+	gap: 50px;
+
+	.targetTrack {
+		cursor: pointer;
+		position: relative;
+
+		.overlay {
+			z-index: 2;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -60%);
+			background-color: rgb(0, 0, 0);
+			border-radius: 50%;
+			padding: 20px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			opacity: 0;
+			transition: opacity 0.3s ease;
+		}
+		.icon {
+			color: white;
+			font-size: 44px;
+         
+		}
+		.trackInfo:hover .overlay {
+			opacity: 1;
+		}
+
+		&:hover .trackInfo {
+			transition: all 0.5s ease 0s;
+			top: 0;
+			border-radius: 17px 17px 17px 17px;
+			height: 250px;
+			.trackName {
+				position: absolute;
+				bottom: 37px;
+			}
+			.artistName {
+				position: absolute;
+				bottom: 15px;
+			}
+		}
+
+		.trackInfo {
+			display: flex;
+			flex-direction: column;
+			width: 250px;
+			height: 70px;
+			border-radius: 0 0 17px 17px;
+			top: 180px;
+			position: absolute;
+			background: rgba(59, 59, 59, 0.195);
+			box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+			backdrop-filter: blur(10.1px);
+		}
+		.trackName {
+			margin-left: 20px;
+			margin-top: 10px;
+			font-size: 15px;
+		}
+		.artistName {
+			margin-left: 20px;
+			font-size: 15px;
+		}
+		.image {
+			position: relative;
+			border-radius: 20px;
+		}
+	}
+}
