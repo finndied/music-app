@@ -49,16 +49,32 @@
 			position: absolute;
 			font-size: 19px;
 			font-weight: 500;
-			margin-top: -250px;
+			margin-top: -270px;
 			top: 50%;
-			// left: 50%;
 			transform: translate(15%, -100%);
 		}
 		.trending {
 			position: absolute;
 			top: 50%;
 			left: 50%;
-			transform: translate(-50%, -90%);
+			transform: translate(-50%, -95%);
+		}
+		.artistsWrapper {
+			display: flex;
+			gap: 670px;
+			justify-content: space-evenly;
+			position: absolute;
+			font-size: 19px;
+			font-weight: 500;
+			margin-top: 100px;
+			top: 50%;
+			transform: translate(15%, -100%);
+		}
+		.artists {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, 80%);
 		}
 	}
 }

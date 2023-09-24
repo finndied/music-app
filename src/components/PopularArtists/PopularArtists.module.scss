@@ -1,0 +1,22 @@
+.artists {
+	display: flex;
+	flex-direction: row;
+	gap: 50px;
+	align-items: center;
+	.artistName {
+		margin-top: 10px;
+	}
+	.targetArtist {
+      cursor: pointer;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+      &:hover .artistName {
+         transition: all 0.3s ease 0s;
+         color: #a9a6a6;
+      }
+	}
+	.image {
+		border-radius: 50%;
+	}
+}
