@@ -2,11 +2,8 @@ import React, { useState, useEffect } from 'react'
 import styles from './TrendingSongs.module.scss'
 import getTopSongs, { TopSong } from '../../api/getTopSongs'
 import { VscDebugStart, VscDebugPause } from 'react-icons/vsc'
-interface TrendingSongsProps {
-	className?: string
-}
 
-const TrendingSongs: React.FC<TrendingSongsProps> = ({ className }) => {
+const TrendingSongs: React.FC = () => {
 	const [topSongs, setTopSongs] = useState<TopSong[]>([])
 	const [isPlayingMap, setIsPlayingMap] = useState<Record<string, boolean>>({})
 
@@ -28,7 +25,7 @@ const TrendingSongs: React.FC<TrendingSongsProps> = ({ className }) => {
 	}, [])
 
 	return (
-		<div className={`${styles.tracks} ${className}`}>
+		<div className={styles.tracks}>
 			{topSongs.slice(0, 3).map((song: TopSong) => (
 				<div
 					className={styles.targetTrack}
@@ -47,8 +44,8 @@ const TrendingSongs: React.FC<TrendingSongsProps> = ({ className }) => {
 						</div>
 						<div className={styles.overlay}>
 							{isPlayingMap[song.chartEntryData.currentRank] ? (
-                        <VscDebugPause className={styles.icon} />
-                        ) : (
+								<VscDebugPause className={styles.icon} />
+							) : (
 								<VscDebugStart className={styles.icon} />
 							)}
 						</div>

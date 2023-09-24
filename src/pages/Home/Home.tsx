@@ -17,16 +17,18 @@ const Home: FC = () => {
 			<div className={styles.homeContent}>
 				<SearchInput className={styles.searchInput} />
 				<UserMenu className={styles.user} />
-				<div className={styles.trendingWrapper}>
-					<div>Trending songs this week</div>
-					<div>See all</div>
+				<div className={styles.homeContentWrapper}>
+					<div className={styles.trendingWrapper}>
+						<div>Trending songs this week</div>
+						<div>See all</div>
+					</div>
+					<TrendingSongs />
+					<div className={styles.artistsWrapper}>
+						<div>Popular artists</div>
+						<div>See all</div>
+					</div>
+					<PopularArtists />
 				</div>
-				<TrendingSongs className={styles.trending} />
-				<div className={styles.artistsWrapper}>
-					<div>Popular artists</div>
-					<div>See all</div>
-				</div>
-				<PopularArtists className={styles.artists} />
 			</div>
 		</div>
 	)

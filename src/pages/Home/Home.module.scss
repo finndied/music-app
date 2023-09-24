@@ -29,52 +29,44 @@
 		background: inherit;
 		box-shadow: inset 0 0 0 3000px rgba(61, 61, 61, 0.192);
 
-		.user {
-			font-size: 18px;
-			position: absolute;
-			right: 30px;
-			top: 13px;
-		}
-
 		.searchInput {
 			position: absolute;
 			right: 200px;
 			top: 18px;
 		}
 
-		.trendingWrapper {
+		.user {
+			font-size: 18px;
+			position: absolute;
+			right: 30px;
+			top: 13px;
+		}
+		.homeContentWrapper {
 			display: flex;
-			gap: 575px;
-			justify-content: space-evenly;
-			position: absolute;
-			font-size: 19px;
-			font-weight: 500;
-			margin-top: -270px;
-			top: 50%;
-			transform: translate(15%, -100%);
-		}
-		.trending {
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -95%);
-		}
-		.artistsWrapper {
-			display: flex;
-			gap: 670px;
-			justify-content: space-evenly;
-			position: absolute;
-			font-size: 19px;
-			font-weight: 500;
-			margin-top: 100px;
-			top: 50%;
-			transform: translate(15%, -100%);
-		}
-		.artists {
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, 80%);
+			flex-direction: column;
+			align-items: flex-start;
+			justify-content: end;
+			min-height: 85vh;
+			margin-left: 70px;
+			gap: 50px;
+
+			.trendingWrapper {
+				display: flex;
+				justify-content: space-between;
+				font-size: 19px;
+				font-weight: 500;
+				width: 850px;
+				margin-bottom: -20px;
+			}
+
+			.artistsWrapper {
+				margin-bottom: -20px;
+				display: flex;
+				justify-content: space-between;
+				font-size: 19px;
+				font-weight: 500;
+				width: 850px;
+			}
 		}
 	}
 }
