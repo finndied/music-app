@@ -22,7 +22,7 @@
 		z-index: -1;
 		filter: brightness(60%) blur(5px);
 	}
-
+	
 	.homeContent {
 		width: 100vw;
 		height: 100vh;
@@ -34,7 +34,7 @@
 			right: 200px;
 			top: 18px;
 		}
-
+		
 		.user {
 			font-size: 18px;
 			position: absolute;
@@ -46,10 +46,10 @@
 			flex-direction: column;
 			align-items: flex-start;
 			justify-content: end;
-			min-height: 85vh;
+			min-height: 87vh;
 			margin-left: 70px;
 			gap: 50px;
-
+			
 			.trendingWrapper {
 				display: flex;
 				justify-content: space-between;
@@ -67,6 +67,13 @@
 				font-weight: 500;
 				width: 850px;
 			}
+		}
+		.nowPlayingWrapper {
+			position: absolute;
+			right: 0;
+			top: 0;
+			margin-top: 100px;
+			margin-right: 31px;
 		}
 	}
 }

@@ -6,6 +6,7 @@ import UserMenu from '../../components/UserMenu/UserMenu'
 import SearchInput from '../../components/Search/SearchInput'
 import TrendingSongs from '../../components/TrendingSongs/TrendingSongs'
 import PopularArtists from '../../components/PopularArtists/PopularArtists'
+import NowPlaying from '../../components/NowPlaying/NowPlaying'
 const Home: FC = () => {
 	return (
 		<div className={styles.wrapper}>
@@ -28,6 +29,9 @@ const Home: FC = () => {
 						<div>See all</div>
 					</div>
 					<PopularArtists />
+				</div>
+				<div className={styles.nowPlayingWrapper}>
+				<NowPlaying/>
 				</div>
 			</div>
 		</div>
