@@ -7,6 +7,8 @@ import SearchInput from '../../components/Search/SearchInput'
 import TrendingSongs from '../../components/TrendingSongs/TrendingSongs'
 import PopularArtists from '../../components/PopularArtists/PopularArtists'
 import NowPlaying from '../../components/NowPlaying/NowPlaying'
+import Player from '../../components/Player/Player'
+
 const Home: FC = () => {
 	return (
 		<div className={styles.wrapper}>
@@ -31,8 +33,11 @@ const Home: FC = () => {
 					<PopularArtists />
 				</div>
 				<div className={styles.nowPlayingWrapper}>
-				<NowPlaying/>
+					<NowPlaying />
 				</div>
+			</div>
+			<div className={styles.playerWrapper}>
+				<Player />
 			</div>
 		</div>
 	)
