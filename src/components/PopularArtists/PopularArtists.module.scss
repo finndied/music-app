@@ -1,8 +1,11 @@
 .artists {
 	display: flex;
+	align-items: center;
+	justify-content: center;
 	flex-direction: row;
 	gap: 50px;
 	align-items: center;
+	flex-wrap: wrap;
 	.artistName {
 		margin-top: 10px;
 	}

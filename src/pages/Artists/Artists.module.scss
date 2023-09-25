@@ -22,14 +22,12 @@
 		z-index: -1;
 		filter: brightness(60%) blur(5px);
 	}
-
 	.homeContent {
-		overflow-y: scroll;
 		width: 100vw;
 		height: 100vh;
 		background: inherit;
 		box-shadow: inset 0 0 0 3000px rgba(61, 61, 61, 0.192);
-
+      overflow-y: scroll;
 		.searchInput {
 			position: absolute;
 			right: 200px;
@@ -42,48 +40,11 @@
 			right: 30px;
 			top: 13px;
 		}
-		.homeContentWrapper {
-			display: flex;
-			flex-direction: column;
-			align-items: flex-start;
-			justify-content: end;
-			min-height: 87vh;
-			margin-left: 70px;
-			gap: 50px;
 
-			.trendingWrapper {
-				display: flex;
-				justify-content: space-between;
-				font-size: 19px;
-				font-weight: 500;
-				width: 850px;
-				margin-bottom: -20px;
-				a:hover {
-					transition: color 0.3s ease 0s;
-					color: #cdcdcdfe;
-				}
-			}
-
-			.artistsWrapper {
-				margin-bottom: -20px;
-				display: flex;
-				justify-content: space-between;
-				font-size: 19px;
-				font-weight: 500;
-				width: 850px;
-				a:hover {
-					transition: color 0.3s ease 0s;
-					color: #cdcdcdfe;
-				}
-			}
-		}
-		.nowPlayingWrapper {
-			position: absolute;
-			right: 0;
-			top: 0;
-			margin-top: 100px;
-			margin-right: 31px;
-		}
+		.artistsWrapper {
+         margin-top: 50px;
+         padding: 50px 50px 100px 70px;
+      }
 	}
 	.playerWrapper {
 		z-index: 100;

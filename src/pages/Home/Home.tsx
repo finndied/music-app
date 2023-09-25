@@ -8,6 +8,7 @@ import TrendingSongs from '../../components/TrendingSongs/TrendingSongs'
 import PopularArtists from '../../components/PopularArtists/PopularArtists'
 import NowPlaying from '../../components/NowPlaying/NowPlaying'
 import Player from '../../components/Player/Player'
+import { Link } from 'react-router-dom'
 
 const Home: FC = () => {
 	return (
@@ -28,9 +29,9 @@ const Home: FC = () => {
 					<TrendingSongs />
 					<div className={styles.artistsWrapper}>
 						<div>Popular artists</div>
-						<div>See all</div>
+						<Link to='/artists'>See all</Link>
 					</div>
-					<PopularArtists />
+					<PopularArtists artistsToDisplay={5}/>
 				</div>
 				<div className={styles.nowPlayingWrapper}>
 					<NowPlaying />

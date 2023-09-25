@@ -3,7 +3,13 @@ import getAccessToken from '../../api/apiSpotify'
 import popularArtists, { PopularArtist } from '../../api/popularArtists'
 import styles from './PopularArtists.module.scss'
 
-const PopularArtists: React.FC = () => {
+interface PopularArtistsProps {
+	artistsToDisplay: number
+}
+
+const PopularArtists: React.FC<PopularArtistsProps> = ({
+	artistsToDisplay
+}) => {
 	const [popularArtist, setPopularArtist] = useState<PopularArtist[]>([])
 
 	useEffect(() => {
@@ -24,7 +30,7 @@ const PopularArtists: React.FC = () => {
 
 	return (
 		<div className={styles.artists}>
-			{popularArtist.slice(0, 5).map(popularArtist => (
+			{popularArtist.slice(0, artistsToDisplay).map(popularArtist => (
 				<div className={styles.targetArtist} key={popularArtist.id}>
 					<img
 						className={styles.image}

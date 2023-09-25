@@ -20,8 +20,8 @@ const popularArtists = async (accessToken: string) => {
 					limit: 100,
 					seed_artists: '7d3WFRME3vBY2cgoP38RDo',
 					seed_genres: 'hip-hop',
-					seed_tracks: '0FKhRENq61t7TYUHxgwB7I',
-					min_popularity: 80,
+					seed_tracks: '2uDTi1PlpSpvAv7IRAoAEU',
+					min_popularity: 60,
 					max_popularity: 100
 				}
 			}
