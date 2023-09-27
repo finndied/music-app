@@ -16,7 +16,7 @@ const router = createBrowserRouter([
 		element: <Artists />
 	},
 	{
-		path: '/artist:id',
+		path: '/artist/:id',
 		element: <Artist />
 	}
 ])

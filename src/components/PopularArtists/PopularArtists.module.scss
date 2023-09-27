@@ -1,7 +1,7 @@
 .artists {
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-between;
 	flex-direction: row;
 	gap: 50px;
 	align-items: center;
@@ -10,14 +10,14 @@
 		margin-top: 10px;
 	}
 	.targetArtist {
-      cursor: pointer;
+		cursor: pointer;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-      &:hover .artistName {
-         transition: all 0.3s ease 0s;
-         color: #a9a6a6;
-      }
+		&:hover .artistName {
+			transition: all 0.3s ease 0s;
+			color: #a9a6a6;
+		}
 	}
 	.image {
 		border-radius: 50%;

@@ -5,7 +5,7 @@ export interface PopularArtist {
 	album: {
 		images: { url: string }[]
 	}
-	artists: { name: string }[]
+	artists: { name: string, id: string }[]
 }
 
 const popularArtists = async (accessToken: string) => {
