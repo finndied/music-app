@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import getAccessToken from '../../api/apiSpotify'
-import popularArtists, { PopularArtist } from '../../api/popularArtists'
+import popularArtists, { PopularArtist } from '../../api/Artist/Artist/popularArtists'
 import styles from './PopularArtists.module.scss'
 import { Link } from 'react-router-dom'
 

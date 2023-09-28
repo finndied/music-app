@@ -1,0 +1,87 @@
+.singleALl {
+	margin-top: 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	h1 {
+		font-size: 30px;
+		margin-bottom: 5px;
+	}
+	button {
+		z-index: 1;
+		font-size: 25px;
+		border-radius: 3px;
+		border: none;
+		background-color: transparent;
+		cursor: pointer;
+		&:hover {
+			transition: color 0.3s ease 0s;
+			color: #d0d0d0;
+		}
+	}
+}
+
+.artistSingles {
+	display: flex;
+	gap: 20px;
+	flex-wrap: wrap;
+	align-items: center;
+	font-size: 10px;
+	.singleInfo {
+		display: flex;
+		flex-direction: column;
+		background: rgba(255, 255, 255, 0.069);
+		box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+		backdrop-filter: blur(10.1px);
+		padding: 10px;
+		border-radius: 7px;
+		cursor: pointer;
+		&:hover {
+			transition: all 0.3s ease 0s;
+			background: rgba(255, 255, 255, 0.143);
+		}
+		.singleName {
+			width: 150px;
+			font-size: 13px;
+			margin-top: 3px;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			p {
+				color: rgb(199, 199, 199);
+				font-size: 12px;
+				margin: 0;
+			}
+		}
+		.singleImage {
+			width: 150px;
+			border-radius: 4px;
+		}
+
+		.playButton {
+			position: absolute;
+			top: 50%;
+			font-size: 34px;
+			left: 50%;
+			transform: translate(52%, 10%);
+			opacity: 0;
+			transition: opacity 0.2s ease;
+			background: rgba(255, 255, 255, 0);
+			box-shadow: 0 4px 30px rgba(0, 0, 0, 0.378);
+			backdrop-filter: blur(10.1px);
+			border-radius: 50%;
+			height: 45px;
+			width: 45px;
+			text-align: center;
+         border: 1px solid white;
+			&:hover {
+            background: rgba(0, 0, 0, 0.177);
+				transition: all 0.3s ease 0s;
+			}
+		}
+
+		&:hover .playButton {
+			opacity: 1;
+		}
+	}
+}
