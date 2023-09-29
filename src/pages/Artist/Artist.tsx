@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import getArtistInfo from '../../api/Artist/Artist/getArtistInfo'
+import getArtistInfo from '../../api/Artist/getArtistInfo'
 import styles from './Artist.module.scss'
 import SearchInput from '../../components/Search/SearchInput'
 import UserMenu from '../../components/UserMenu/UserMenu'

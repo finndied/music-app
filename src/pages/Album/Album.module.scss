@@ -1,0 +1,195 @@
+.wrapper {
+	display: flex;
+	box-sizing: border-box;
+	width: 100%;
+	height: 100%;
+	background: rgba(255, 255, 255, 0.194);
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(10.1px);
+	border: 1px solid rgba(43, 43, 43, 0.568);
+	position: absolute;
+	overflow: hidden;
+
+	.homeContainer {
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		width: 100vw;
+		height: 100vh;
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: -1;
+		filter: brightness(40%);
+	}
+	.homeContent {
+		width: 100vw;
+		height: 100vh;
+		background: inherit;
+		box-shadow: inset 0 0 0 3000px rgba(61, 61, 61, 0.192);
+		overflow-y: scroll;
+		.searchInput {
+			z-index: 100;
+			position: absolute;
+			right: 200px;
+			top: 18px;
+		}
+
+		.user {
+			z-index: 100;
+			font-size: 18px;
+			position: absolute;
+			right: 30px;
+			top: 13px;
+		}
+
+		.albumWrapper {
+			margin-top: 50px;
+			padding: 50px 50px 100px 70px;
+			.album {
+				align-items: center;
+				border-radius: 7px;
+				background: rgba(255, 255, 255, 0);
+				box-shadow: 0 4px 30px rgba(0, 0, 0, 0.172);
+				padding: 10px 15px;
+				margin: 10px 0 0 -15px;
+				backdrop-filter: blur(10.1px);
+				display: flex;
+				.albumImage {
+					width: 250px;
+					height: 250px;
+					border-radius: 7px;
+				}
+				.albumName {
+					margin-left: 10px;
+					margin-top: 10px;
+					font-size: 30px;
+					font-weight: 700;
+					width: 450px;
+					.albumArtist {
+						font-size: 20px;
+						font-weight: 500;
+					}
+
+					.albumInfo {
+						margin-top: 40px;
+						font-weight: 400;
+						font-size: 15px;
+						display: flex;
+						gap: 15px;
+						.albumRelease {
+							display: flex;
+							align-items: center;
+							svg {
+								margin-bottom: 1px;
+								margin-right: 5px;
+							}
+						}
+						.albumTotalTracks {
+							display: flex;
+							align-items: center;
+							svg {
+								margin-bottom: 1px;
+								margin-right: 5px;
+							}
+						}
+					}
+				}
+				.buttons {
+					position: absolute;
+					right: 50px;
+					top: 90px;
+					display: flex;
+					flex-direction: row;
+					margin-left: 500px;
+					align-items: center;
+					gap: 30px;
+					font-size: 70px;
+					.play {
+						cursor: pointer;
+						&:hover {
+							transition: color 0.3s ease 0s;
+							color: rgb(208, 208, 208);
+						}
+					}
+					.addToPlaylist {
+						cursor: pointer;
+						&:hover {
+							transition: color 0.3s ease 0s;
+							color: #d0d0d0;
+						}
+					}
+				}
+			}
+		}
+
+		.trackWrapper {
+			border-radius: 7px;
+			margin-top: 20px;
+			background: rgba(255, 255, 255, 0);
+			box-shadow: 0 4px 30px rgba(0, 0, 0, 0.172);
+			padding: 10px 15px;
+			margin: 10px 0 0 -15px;
+			backdrop-filter: blur(10.1px);
+			.albumTracks {
+				background: rgba(255, 255, 255, 0.159);
+				box-shadow: 0 4px 30px rgba(0, 0, 0, 0.172);
+				backdrop-filter: blur(10.1px);
+				margin-top: 10px;
+				padding: 0 15px;
+				display: flex;
+				border-radius: 7px;
+				&:hover {
+					transition: all 0.3s ease 0s;
+					background: rgba(255, 255, 255, 0.239);
+				}
+				.play {
+					cursor: pointer;
+					margin-top: 5px;
+					margin-right: 3px;
+					font-size: 35px;
+					&:hover {
+						transition: color 0.3s ease 0s;
+						color: rgb(208, 208, 208);
+					}
+				}
+				.trackArtist {
+					margin-left: 10px;
+					margin-bottom: 4px;
+					padding-right: 10px;
+					display: flex;
+					align-items: center;
+					font-weight: 500;
+					width: 200px;
+				}
+				.trackInfo {
+					margin-bottom: 5px;
+					width: 100vw;
+					align-items: center;
+					display: flex;
+					.trackName {
+						width: 100%;
+						margin-top: 1px;
+					}
+					.addToPlaylist {
+						cursor: pointer;
+						font-size: 22px;
+						margin-top: 7px;
+						margin-right: 10px;
+						opacity: 0.8;
+						&:hover {
+							transition: color 0.3s ease 0s;
+							color: #d0d0d0;
+						}
+					}
+				}
+			}
+		}
+	}
+	.playerWrapper {
+		z-index: 100;
+		position: absolute;
+		bottom: 0;
+		width: 100vw;
+	}
+}

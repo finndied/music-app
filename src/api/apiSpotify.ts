@@ -19,9 +19,9 @@ const getAccessToken = async () => {
 					'Content-Type': 'application/x-www-form-urlencoded'
 				}
 			}
-		)
-		console.log(response.data.access_token)
-		return response.data.access_token
+			)
+			console.log(response.data.access_token)
+			return response.data.access_token
 	} catch (error) {
 		console.error('Error fetching access token:', error)
 		throw error

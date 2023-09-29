@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Home from './pages/Home/Home.tsx'
 import Artists from './pages/Artists/Artists.tsx'
 import Artist from './pages/Artist/Artist.tsx'
+import Album from './pages/Album/Album.tsx'
 
 const router = createBrowserRouter([
 	{
@@ -18,6 +19,9 @@ const router = createBrowserRouter([
 	{
 		path: '/artist/:id',
 		element: <Artist />
+	},{
+		path: '/album/:id',
+		element: <Album />
 	}
 ])
 
