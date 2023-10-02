@@ -13,12 +13,51 @@ import { MdPlaylistAdd, MdFavoriteBorder } from 'react-icons/md'
 import { AiFillPlayCircle, AiOutlineCalendar } from 'react-icons/ai'
 import { GoIssueTracks } from 'react-icons/go'
 import { AlbumInfo } from './types'
+import getTrack from '../../api/getTrack'
 
 const Album: FC = () => {
 	const { id } = useParams<{ id: string }>()
+
 	const [albumInfo, setAlbumInfo] = useState<AlbumInfo | null>(null)
 	const [isLoading, setIsLoading] = useState<boolean>(true)
+	const [audioUrl, setAudioUrl] = useState('')
+	const [isPlaying, setIsPlaying] = useState(false)
+	const [currentTrack, setCurrentTrack] = useState<any>(null)
+	const [currentImage, setCurrentImage] = useState<string>('')
+	const [currentTrackIndex, setCurrentTrackIndex] = useState<number>(0)
 
+	// Function for track playback
+	const playTrack = async (trackIndex: number) => {
+		try {
+			const track = albumInfo?.tracks.items[trackIndex]
+			if (!track) {
+				console.error('Invalid track index')
+				return
+			}
+
+			const youtubeVideo = await getTrack(track.artists[0].name, track.name)
+
+			if (youtubeVideo) {
+				const audioUrl = youtubeVideo.audio[0]?.url
+				const currentImage = albumInfo?.images[0].url || ''
+				if (audioUrl) {
+					setAudioUrl(audioUrl)
+					setIsPlaying(true)
+					setCurrentTrack(track)
+					setCurrentImage(currentImage)
+					setCurrentTrackIndex(trackIndex)
+				} else {
+					console.error('Error playing track: Invalid audio URL')
+				}
+			} else {
+				console.error('Error playing track: No youtubeVideo data')
+			}
+		} catch (error) {
+			console.error('Error playing track:', error)
+		}
+	}
+
+	// Effect for loading album information
 	useEffect(() => {
 		getAccessToken()
 			.then(accessToken => {
@@ -44,7 +83,7 @@ const Album: FC = () => {
 			<NavigationBar />
 			<div
 				className={styles.homeContainer}
-				style={{ backgroundImage: `url(${background})` }}
+				style={{ backgroundImage: `url(${currentImage || background})` }}
 			></div>
 			<div className={styles.homeContent}>
 				<SearchInput className={styles.searchInput} />
@@ -89,7 +128,10 @@ const Album: FC = () => {
 								<div className={styles.trackWrapper}>
 									{albumInfo?.tracks.items.map((track, index) => (
 										<div className={styles.albumTracks} key={index}>
-											<div className={styles.play}>
+											<div
+												className={styles.play}
+												onClick={() => playTrack(index)}
+											>
 												<AiFillPlayCircle />
 											</div>
 											<div className={styles.trackArtist}>
@@ -115,7 +157,16 @@ const Album: FC = () => {
 				</div>
 			</div>
 			<div className={styles.playerWrapper}>
-				<Player />
+				<Player
+					currentImage={currentImage}
+					currentTrack={currentTrack}
+					audioUrl={audioUrl}
+					isPlaying={isPlaying}
+					setIsPlaying={setIsPlaying}
+					currentTrackIndex={currentTrackIndex}
+					albumInfo={albumInfo}
+					playTrack={playTrack}
+				/>
 			</div>
 		</div>
 	)

@@ -63,7 +63,7 @@
 				left: 0;
 				background-color: #a6a6a6;
 				.progressInput {
-               z-index: 2;
+					z-index: 2;
 					-webkit-appearance: none;
 					-moz-appearance: none;
 					appearance: none;
@@ -104,13 +104,17 @@
 				font-size: 30px;
 				background-color: transparent;
 				border: none;
-            margin: 0;
+				margin: 0;
 				cursor: pointer;
 				color: white;
 				&:hover {
 					transition: color 0.3s ease 0s;
 					color: rgb(208, 205, 205);
 				}
+			}
+			.button.active {
+				color: rgb(208, 205, 205);
+				transform: scale(1.05);
 			}
 		}
 	}
@@ -137,14 +141,14 @@
 			left: 0;
 			background-color: #a6a6a6;
 			.volumeInput {
-            z-index: 2;
+				z-index: 2;
 				-webkit-appearance: none;
 				-moz-appearance: none;
 				appearance: none;
 				color: white;
 				background-color: transparent;
 				cursor: pointer;
-            width: 99px;
+				width: 99px;
 				position: absolute;
 				height: 5px;
 				bottom: -3px;
