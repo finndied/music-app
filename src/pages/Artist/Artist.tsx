@@ -4,19 +4,21 @@ import getArtistInfo from '../../api/Artist/getArtistInfo'
 import styles from './Artist.module.scss'
 import SearchInput from '../../components/Search/SearchInput'
 import UserMenu from '../../components/UserMenu/UserMenu'
-import Player from '../../components/Player/Player'
 import NavigationBar from '../../components/layout/NavigationBar/NavigationBar'
 import background from '../../assets/images/background.gif'
 import AlbumList from '../../components/Artist/AlbumList/AlbumList'
 import SingleList from '../../components/Artist/SingleList/SingleList'
-import { ArtistInfo } from './types'
+import { setArtistInfo } from '../../store/artistInfoSlice'
 import TopTracks from '../../components/Artist/TopTracks/TopTracks'
 import { formatNumberWithSpaces } from '../../utils/TimeFormater'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '../../store/store'
 
 const Artist: FC = () => {
 	// Getting the "id" parameter from the URL
 	const { id } = useParams<{ id: string }>()
-	const [artistInfo, setArtistInfo] = useState<ArtistInfo | null>(null)
+	const artistInfo = useSelector((state: RootState) => state.artistInfo)
+	const dispatch = useDispatch()
 	const [isLoading, setIsLoading] = useState<boolean>(true)
 	// State for displaying the full biography of the artist
 	const [showAll, setShowAll] = useState<boolean>(false)
@@ -31,7 +33,7 @@ const Artist: FC = () => {
 		const fetchArtistInfo = async () => {
 			try {
 				const response = await getArtistInfo(id || '')
-				setArtistInfo(response.data)
+				dispatch(setArtistInfo(response.data)) 
 				setIsLoading(false)
 			} catch (error) {
 				console.error('Error fetching artist info:', error)
@@ -116,10 +118,7 @@ const Artist: FC = () => {
 										dangerouslySetInnerHTML={{
 											__html: showAll
 												? artistInfo?.artist?.profile?.biography?.text || ''
-												: artistInfo?.artist.profile.biography.text.slice(
-														0,
-														700
-												  ) || ''
+												: (artistInfo?.artist?.profile?.biography?.text || '').slice(0, 700)
 										}}
 									/>
 									<button onClick={toggleShowAll}>
@@ -131,9 +130,6 @@ const Artist: FC = () => {
 						</div>
 					)}
 				</div>
-			</div>
-			<div className={styles.playerWrapper}>
-				<Player />
 			</div>
 		</div>
 	)

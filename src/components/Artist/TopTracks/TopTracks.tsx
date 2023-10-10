@@ -7,19 +7,52 @@ import {
 } from '../../../utils/TimeFormater'
 import { AiFillPlayCircle } from 'react-icons/ai'
 import { MdPlaylistAdd } from 'react-icons/md'
+import { useDispatch } from 'react-redux'
+import {
+	setCurrentTrack,
+	setCurrentTopTrackIndex,
+	playTopTrackAsync,
+	setTopTracks,
+	setCurrentTrackType
+} from '../../../store/playTracks/TopAndAlbumTracksSlice'
+import { setIsPlaying } from '../../../store/playerSlice'
 
 interface TopTracksProps {
 	artistInfo: ArtistInfo | null
 }
 
 const TopTracks: FC<TopTracksProps> = ({ artistInfo }) => {
+	const dispatch = useDispatch()
+
+	// Function for playing a top track by index
+	const playTopTrackByIndex = (trackIndex: number) => {
+		try {
+			dispatch(setIsPlaying(true))
+			dispatch(setCurrentTrack(trackIndex))
+			dispatch(
+				setTopTracks(artistInfo?.artist.discography.topTracks.items || [])
+			)
+			dispatch(setCurrentTopTrackIndex(trackIndex))
+			dispatch(setCurrentTrackType('topTracks'))
+			console.log(trackIndex)
+			dispatch(playTopTrackAsync(trackIndex))
+		} catch (error) {
+			console.error('Error playing top track:', error)
+			throw error
+		}
+	}
+
 	return (
 		<div>
 			<div className={styles.artistTopTracks}>
-				{artistInfo?.artist.discography.topTracks.items.map((track, uid) => (
-					<div key={uid} className={styles.trackInfo}>
+				{artistInfo?.artist.discography.topTracks.items.map((track, index) => (
+					<div key={index} className={styles.trackInfo}>
 						<div className={styles.trackArtist}>
-							<div className={styles.play}>
+							<div
+								className={styles.play}
+								onClick={() => playTopTrackByIndex(index)}
+							>
+								{' '}
 								<AiFillPlayCircle />
 							</div>
 							<img

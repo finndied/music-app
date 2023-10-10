@@ -37,6 +37,12 @@
 				}
 			}
 		}
+		.nextTrackName {
+			width: 200px;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
 		.trackArtist {
 			margin-top: 5px;
 			font-size: 16px;

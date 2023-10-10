@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import styles from './Home.module.scss'
 import background from '../../assets/images/background.gif'
 import NavigationBar from '../../components/layout/NavigationBar/NavigationBar'
@@ -7,9 +7,7 @@ import SearchInput from '../../components/Search/SearchInput'
 import TrendingSongs from '../../components/TrendingSongs/TrendingSongs'
 import PopularArtists from '../../components/PopularArtists/PopularArtists'
 import NowPlaying from '../../components/NowPlaying/NowPlaying'
-import Player from '../../components/Player/Player'
-import { Link } from 'react-router-dom'
-
+import { Link, useParams } from 'react-router-dom'
 const Home: FC = () => {
 	return (
 		<div className={styles.wrapper}>
@@ -31,15 +29,13 @@ const Home: FC = () => {
 						<div>Popular artists</div>
 						<Link to='/artists'>See all</Link>
 					</div>
-					<PopularArtists artistsToDisplay={5}/>
+					<PopularArtists artistsToDisplay={5} />
 				</div>
 				<div className={styles.nowPlayingWrapper}>
 					<NowPlaying />
 				</div>
 			</div>
-			<div className={styles.playerWrapper}>
-				<Player />
-			</div>
+			<div className={styles.playerWrapper}></div>
 		</div>
 	)
 }
