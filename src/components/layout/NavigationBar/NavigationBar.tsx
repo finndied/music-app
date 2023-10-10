@@ -28,11 +28,11 @@ const NavigationBar: FC = () => {
 				</div>
 			</Link>
 			<Link
-				to='/albums'
-				className={location.pathname === '/albums' ? styles.activeLink : ''}
+				to='/trending'
+				className={location.pathname === '/trending' ? styles.activeLink : ''}
 			>
 				<div>
-					<BsDiscFill /> Albums
+					<BsDiscFill /> Trending
 				</div>
 			</Link>
 			<Link

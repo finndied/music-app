@@ -1,12 +1,12 @@
 import { FC } from 'react'
 import NavigationBar from '../../components/layout/NavigationBar/NavigationBar'
-import styles from './Artists.module.scss'
+import styles from './Trending.module.scss'
 import background from '../../assets/images/background.gif'
 import UserMenu from '../../components/UserMenu/UserMenu'
 import SearchInput from '../../components/Search/SearchInput'
-import PopularArtists from '../../components/PopularArtists/PopularArtists'
+import TrendingSongs from '../../components/TrendingSongs/TrendingSongs'
 
-const Artists: FC = () => {
+const Trending: FC = () => {
 	return (
 		<div className={styles.wrapper}>
 			<NavigationBar />
@@ -17,9 +17,9 @@ const Artists: FC = () => {
 			<div className={styles.homeContent}>
 				<SearchInput className={styles.searchInput} />
 				<UserMenu className={styles.user} />
-            <div className={styles.artistsWrapper}>
-				<h2>Popular artists</h2>
-				<PopularArtists artistsToDisplay={100} />
+            <div className={styles.trendingWrapper}>
+            <h2>Trending songs this week</h2>
+				<TrendingSongs tracksToDisplay={200} />
             </div>
 			</div>
 			
@@ -27,4 +27,4 @@ const Artists: FC = () => {
 	)
 }
 
-export default Artists
+export default Trending

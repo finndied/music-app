@@ -22,9 +22,9 @@ const Home: FC = () => {
 				<div className={styles.homeContentWrapper}>
 					<div className={styles.trendingWrapper}>
 						<div>Trending songs this week</div>
-						<div>See all</div>
+						<Link to='/trending'><div>See all</div></Link>
 					</div>
-					<TrendingSongs />
+					<TrendingSongs tracksToDisplay={3}/>
 					<div className={styles.artistsWrapper}>
 						<div>Popular artists</div>
 						<Link to='/artists'>See all</Link>

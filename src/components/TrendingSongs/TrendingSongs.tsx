@@ -3,7 +3,11 @@ import styles from './TrendingSongs.module.scss'
 import getTopSongs, { TopSong } from '../../api/getTopSongs'
 import { VscDebugStart, VscDebugPause } from 'react-icons/vsc'
 
-const TrendingSongs: React.FC = () => {
+interface TrendingSongsProps {
+	tracksToDisplay: number
+}
+
+const TrendingSongs: React.FC<TrendingSongsProps> = ({ tracksToDisplay }) => {
 	const [topSongs, setTopSongs] = useState<TopSong[]>([])
 	const [isPlayingMap, setIsPlayingMap] = useState<Record<string, boolean>>({})
 
@@ -26,7 +30,7 @@ const TrendingSongs: React.FC = () => {
 
 	return (
 		<div className={styles.tracks}>
-			{topSongs.slice(0, 3).map((song: TopSong) => (
+			{topSongs.slice(0, tracksToDisplay).map((song: TopSong) => (
 				<div
 					className={styles.targetTrack}
 					key={song.chartEntryData.currentRank}
@@ -35,24 +39,19 @@ const TrendingSongs: React.FC = () => {
 					<img
 						className={styles.image}
 						src={song.trackMetadata.displayImageUri}
-						width={250}
 						alt=''
 					/>
 					<div className={styles.trackInfo}>
 						<div className={styles.trackName}>
 							{song.trackMetadata.trackName}
 						</div>
-						<div className={styles.overlay}>
-							{isPlayingMap[song.chartEntryData.currentRank] ? (
-								<VscDebugPause className={styles.icon} />
-							) : (
-								<VscDebugStart className={styles.icon} />
-							)}
-						</div>
 						<div className={styles.artistName}>
 							{song.trackMetadata.artists[0].name}
 						</div>
 					</div>
+						<div className={styles.playButton}>
+							<VscDebugStart />
+						</div>
 				</div>
 			))}
 		</div>

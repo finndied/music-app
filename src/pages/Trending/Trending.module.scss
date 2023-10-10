@@ -32,6 +32,7 @@
 			position: absolute;
 			right: 200px;
 			top: 18px;
+			z-index: 3;
 		}
 
 		.user {
@@ -39,9 +40,11 @@
 			position: absolute;
 			right: 30px;
 			top: 13px;
+			z-index: 3;
+			cursor: pointer;
 		}
 
-		.artistsWrapper {
+		.trendingWrapper {
 			display: flex;
 			flex-direction: column;
 			gap: 50px;

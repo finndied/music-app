@@ -1,55 +1,16 @@
 .tracks {
 	display: flex;
+	justify-content: space-between;
 	flex-direction: row;
+	flex-wrap: wrap;
 	gap: 50px;
 
 	.targetTrack {
-		cursor: pointer;
 		position: relative;
-
-		.overlay {
-			z-index: 2;
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -60%);
-			background-color: rgb(0, 0, 0);
-			border-radius: 50%;
-			padding: 20px;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			opacity: 0;
-			transition: opacity 0.3s ease;
-		}
-		.icon {
-			color: white;
-			font-size: 44px;
-         
-		}
-		.trackInfo:hover .overlay {
-			opacity: 1;
-		}
-
-		&:hover .trackInfo {
-			transition: all 0.5s ease 0s;
-			top: 0;
-			border-radius: 17px 17px 17px 17px;
-			height: 251px;
-			.trackName {
-				position: absolute;
-				bottom: 37px;
-			}
-			.artistName {
-				position: absolute;
-				bottom: 15px;
-			}
-		}
-
 		.trackInfo {
 			display: flex;
 			flex-direction: column;
-			width: 250px;
+			width: 250.5px;
 			height: 70px;
 			border-radius: 0 0 17px 17px;
 			top: 181px;
@@ -58,19 +19,55 @@
 			box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 			backdrop-filter: blur(10.1px);
 		}
+
+		.image {
+			width: 250px;
+			height: 250px;
+			position: relative;
+			border-radius: 20px;
+		}
+
 		.trackName {
 			z-index: 100;
 			margin-left: 20px;
 			margin-top: 10px;
 			font-size: 15px;
+			width: 200px;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			font-weight: 500;
 		}
+		
 		.artistName {
 			margin-left: 20px;
 			font-size: 15px;
 		}
-		.image {
-			position: relative;
-			border-radius: 20px;
+
+		.playButton {
+			cursor: pointer;
+			position: absolute;
+			top: 50%;
+			font-size: 45px;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			opacity: 0;
+			transition: opacity 0.2s ease;
+			background: rgba(255, 255, 255, 0.069);
+			box-shadow: 0 4px 30px rgba(0, 0, 0, 0.378);
+			backdrop-filter: blur(10.1px);
+			border-radius: 50%;
+			height: 60px;
+			width: 60px;
+			text-align: center;
+			border: 1px solid white;
+			&:hover {
+				transition: all 0.3s ease 0s;
+				background: rgba(0, 0, 0, 0.177);
+			}
+		}
+		&:hover .playButton {
+			opacity: 1;
 		}
 	}
 }

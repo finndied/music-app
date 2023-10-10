@@ -14,7 +14,7 @@ const NowPlaying: FC = () => {
 	const currentImage = useSelector(
 		(state: RootState) => state.player.currentImage
 	)
-	const nextTracks = useSelector((state: RootState) => state.tracks.topTracks)
+	// const nextTracks = useSelector((state: RootState) => state.tracks.topTracks)
 
 	return (
 		<div className={styles.wrapper}>
@@ -25,19 +25,19 @@ const NowPlaying: FC = () => {
 			<div className={styles.trackInfo}>
 				{currentTrack && (
 					<div className={styles.trackName}>
-						{currentTrack?.track.name} <MdPlaylistAdd />
+						{currentTrack?.track?.name || currentTrack?.name} <MdPlaylistAdd />
 					</div>
 				)}
 				{currentTrack && (
 					<div className={styles.trackArtist}>
-						{currentTrack?.track.artists?.items[0].profile?.name}
+						{currentTrack?.track?.artists?.items[0].profile?.name || currentTrack?.artists[0]?.name}
 					</div>
 				)}
 			</div>
 			<div className={styles.border}></div>
 			<div className={styles.queue}>Queue</div>
 			{/* start queue  */}
-			{nextTracks.slice(1, 4).map((nextTrack, index) => (
+			{/* {nextTracks.slice(1, 4).map((nextTrack, index) => (
 				<div className={styles.queueTrack} key={index}>
 					<div className={styles.play}>
 						<AiFillPlayCircle />
@@ -54,17 +54,19 @@ const NowPlaying: FC = () => {
 						</div>
 					</div>
 				</div>
-			))}
+			))} */}
 
-			{/* <div className={styles.queueTrack}>
+			<div className={styles.queueTrack}>
 				<div className={styles.play}>
 					<AiFillPlayCircle />
 				</div>
 				<img className={styles.trackImage} src={currentImage || image} alt='' />
 				<div className={styles.trackInfo}>
-					<div className={styles.nextTrackName}>{currentTrack?.track.name}</div>
+					<div className={styles.nextTrackName}>
+						{currentTrack?.track?.name || currentTrack?.name}
+					</div>
 					<div className={styles.trackArtist}>
-						{currentTrack?.track.artists?.items[0].profile?.name}
+						{currentTrack?.track?.artists?.items[0]?.profile?.name || currentTrack?.artists[0]?.name}
 					</div>
 				</div>
 			</div>
@@ -75,12 +77,14 @@ const NowPlaying: FC = () => {
 				</div>
 				<img className={styles.trackImage} src={currentImage || image} alt='' />
 				<div className={styles.trackInfo}>
-					<div className={styles.nextTrackName}>{currentTrack?.track.name}</div>
+					<div className={styles.nextTrackName}>
+						{currentTrack?.track?.name || currentTrack?.name}
+					</div>
 					<div className={styles.trackArtist}>
-						{currentTrack?.track.artists?.items[0].profile?.name}
+						{currentTrack?.track?.artists?.items[0]?.profile?.name || currentTrack?.artists[0]?.name}
 					</div>
 				</div>
-			</div> */}
+			</div>
 			{/* end queue */}
 		</div>
 	)
