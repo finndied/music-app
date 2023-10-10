@@ -8,9 +8,10 @@ import ProgressBar from './ProgressBar'
 import PlayerControls from './PlayerControls'
 import VolumeControl from './VolumeControl'
 import { Link } from 'react-router-dom'
+import LoaderName from '../../utils/LoaderName'
 const Player: FC = () => {
-	const audioRef = useRef<HTMLAudioElement | null>(null);
-
+	const audioRef = useRef<HTMLAudioElement | null>(null)
+	// const MyLoader = () => <ContentLoader />
 	const currentImage = useSelector(
 		(state: RootState) => state.player.currentImage
 	)
@@ -26,7 +27,7 @@ const Player: FC = () => {
 					<div className={styles.trackTitle}>
 						{currentTrack?.track
 							? currentTrack.track.name
-							: currentTrack?.name || 'No Track'}
+							: currentTrack?.name || <LoaderName/>}
 					</div>
 					<div className={styles.trackArtist}>
 						{currentTrack?.track ? (
@@ -34,13 +35,17 @@ const Player: FC = () => {
 								to={`/artist/${currentTrack?.track?.artists?.items[0]?.uri.replace(
 									'spotify:artist:',
 									''
-								)}`} 
+								)}`}
 							>
-								{currentTrack?.track?.artists?.items[0]?.profile?.name}
+								{currentTrack?.track?.artists?.items[0]?.profile?.name ||
+									<LoaderName/>}
+							</Link>
+						) : currentTrack?.artists && currentTrack.artists.length > 0 ? (
+							<Link to={`/artist/${currentTrack.artists[0]?.id}`}>
+								{currentTrack.artists[0]?.name}
 							</Link>
 						) : (
-							(currentTrack?.artists && currentTrack.artists[0]?.name) ||
-							'No Artist'
+							<LoaderName/>
 						)}
 					</div>
 				</div>

@@ -9,6 +9,7 @@ interface Track {
 	name: string
 	artists: {
 		name: string
+		id: string
 	}[]
 	track: {
 		name: string
