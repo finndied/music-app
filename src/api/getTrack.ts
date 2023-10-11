@@ -8,7 +8,7 @@ const getTrack = async (artist: string, trackName: string) => {
       track: `${artist} - ${trackName}`,
     },
     headers: {
-      'X-RapidAPI-Key': '126fed4ddamshb09cb8b1ebed062p114309jsn7963488637ab',
+      'X-RapidAPI-Key': '2b5629aa90msh0fe9d210d25dc19p126f8bjsne06f8a297f9b',
       'X-RapidAPI-Host': 'spotify-scraper.p.rapidapi.com',
     },
   };

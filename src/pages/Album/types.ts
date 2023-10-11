@@ -1,6 +1,6 @@
 export interface AlbumInfo {
 	name: string
-	artists: { name: string }[]
+	artists: { name: string; id: string }[]
 	images: { url: string }[]
 	release_date: string
 	total_tracks: number

@@ -10,6 +10,7 @@ import { Provider } from 'react-redux'
 import store from './store/store.ts'
 import Player from './components/Player/Player.tsx'
 import Trending from './pages/Trending/Trending.tsx'
+import Search from './pages/Search/Search.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<BrowserRouter>
@@ -19,8 +20,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 					<Route path='/' element={<Home />} />
 					<Route path='/artists' element={<Artists />} />
 					<Route path='/artist/:id' element={<Artist />} />
-					<Route path='/trending/' element={<Trending />} />
+					<Route path='/trending' element={<Trending />} />
 					<Route path='/album/:id' element={<Album />} />
+					<Route path='/search/:name' element={<Search />} />
 				</Routes>
 				<Player />
 			</React.StrictMode>

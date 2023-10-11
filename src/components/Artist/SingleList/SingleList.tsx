@@ -3,6 +3,7 @@ import { BiDownArrowAlt, BiUpArrowAlt } from 'react-icons/bi'
 import styles from './SingleList.module.scss'
 import { ArtistInfo } from '../../../pages/Artist/types'
 import { VscDebugStart } from 'react-icons/vsc'
+import { Link } from 'react-router-dom'
 
 interface SingleListProps {
 	artistInfo: ArtistInfo | null
@@ -36,7 +37,8 @@ const SingleList: FC<SingleListProps> = ({
 				{artistInfo?.artist.discography.singles.items
 					.slice(0, showAllSingles ? undefined : maxVisibleSingles)
 					.map((track, index) => (
-						<div key={index} className={styles.singleInfo}>
+						<Link to={`/album/${track.releases.items[0].id}`} key={index}>
+						<div className={styles.singleInfo}>
 							<img
 								src={track.releases.items[0].coverArt.sources[0].url}
 								alt=''
@@ -50,6 +52,7 @@ const SingleList: FC<SingleListProps> = ({
 							<VscDebugStart />
 							</div>
 						</div>
+						</Link>
 					))}
 			</div>
 		</div>

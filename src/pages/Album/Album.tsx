@@ -3,8 +3,8 @@ import NavigationBar from '../../components/layout/NavigationBar/NavigationBar'
 import styles from './Album.module.scss'
 import background from '../../assets/images/background.gif'
 import UserMenu from '../../components/UserMenu/UserMenu'
-import SearchInput from '../../components/Search/SearchInput'
-import { useParams } from 'react-router-dom'
+import SearchInput from '../../components/SearchInput/SearchInput'
+import { Link, useParams } from 'react-router-dom'
 import getAlbum from '../../api/Artist/getAlbum'
 import getAccessToken from '../../api/apiSpotify'
 import { formatMillisecondsToMinutesSeconds } from '../../utils/TimeFormater'
@@ -49,7 +49,6 @@ const Album: FC = () => {
 			throw error
 		}
 	}
-
 	// Effect for loading album information
 	useEffect(() => {
 		getAccessToken()
@@ -93,9 +92,11 @@ const Album: FC = () => {
 								/>
 								<div className={styles.albumName}>
 									{albumInfo?.name}
-									<div className={styles.albumArtist}>
-										{albumInfo?.artists[0].name}
-									</div>
+									<Link to={`/artist/${albumInfo?.artists[0].id}`}>
+										<div className={styles.albumArtist}>
+											{albumInfo?.artists[0].name}
+										</div>
+									</Link>
 									<div className={styles.albumInfo}>
 										<div className={styles.albumRelease}>
 											<AiOutlineCalendar />

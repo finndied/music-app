@@ -48,6 +48,7 @@ export interface Artist {
 			items: {
 				releases: {
 					items: {
+						id: string
 						name: string
 						date: {
 							year: number

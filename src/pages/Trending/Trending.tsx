@@ -3,7 +3,7 @@ import NavigationBar from '../../components/layout/NavigationBar/NavigationBar'
 import styles from './Trending.module.scss'
 import background from '../../assets/images/background.gif'
 import UserMenu from '../../components/UserMenu/UserMenu'
-import SearchInput from '../../components/Search/SearchInput'
+import SearchInput from '../../components/SearchInput/SearchInput'
 import TrendingSongs from '../../components/TrendingSongs/TrendingSongs'
 
 const Trending: FC = () => {
