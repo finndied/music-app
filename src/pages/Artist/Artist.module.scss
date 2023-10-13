@@ -28,14 +28,9 @@
 		background: inherit;
 		box-shadow: inset 0 0 0 3000px rgba(61, 61, 61, 0.042);
 		overflow-y: scroll;
-		.searchInput {
-			z-index: 100;
-			position: absolute;
-			right: 200px;
-			top: 18px;
-		}
 
 		.user {
+			cursor: pointer;
 			z-index: 100;
 			font-size: 18px;
 			position: absolute;
@@ -44,6 +39,7 @@
 		}
 
 		.artistsWrapper {
+			margin-left: 230px;
 			margin-top: 50px;
 			padding: 50px 20px 100px 70px;
 
@@ -71,11 +67,11 @@
 				}
 				.artistLeftSide {
 					margin-top: 70px;
-					margin-left: -250px;
+					margin-left: -240px;
 					width: 550px;
 				}
 				.artistRightSide {
-					margin-left: -90px;
+					margin-left: -20px;
 					.artistBio {
 						font-size: 15px;
 						text-align: justify;

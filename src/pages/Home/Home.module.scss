@@ -14,8 +14,8 @@
 		background-size: cover;
 		background-position: center;
 		background-repeat: no-repeat;
-		width: 100vw;
-		height: 100vh;
+		width: 100%;
+		height: 100%;
 		position: fixed;
 		top: 0;
 		left: 0;
@@ -25,16 +25,10 @@
 
 	.homeContent {
 		overflow-y: scroll;
-		width: 100vw;
-		height: 100vh;
+		width: 100%;
+		height: 100%;
 		background: inherit;
 		box-shadow: inset 0 0 0 3000px rgba(61, 61, 61, 0.192);
-
-		.searchInput {
-			position: absolute;
-			right: 200px;
-			top: 18px;
-		}
 
 		.user {
 			font-size: 18px;
@@ -44,21 +38,18 @@
 			cursor: pointer;
 		}
 		.homeContentWrapper {
+			margin-top: 100px;
 			display: flex;
-			flex-direction: column;
-			align-items: flex-start;
-			justify-content: end;
-			min-height: 87vh;
-			margin-left: 70px;
-			gap: 50px;
-
+			flex-direction: row;
+			margin-left: 300px;
+			margin-right: 50px;
 			.trendingWrapper {
+				margin-bottom: 30px;
 				display: flex;
 				justify-content: space-between;
 				font-size: 19px;
 				font-weight: 500;
-				width: 850px;
-				margin-bottom: -20px;
+				width: 860px;
 				a:hover {
 					transition: color 0.3s ease 0s;
 					color: #cdcdcdfe;
@@ -66,12 +57,13 @@
 			}
 
 			.artistsWrapper {
-				margin-bottom: -20px;
+				margin-top: 50px;
+				margin-bottom: 30px;
 				display: flex;
 				justify-content: space-between;
 				font-size: 19px;
 				font-weight: 500;
-				width: 850px;
+				width: 855px;
 				a:hover {
 					transition: color 0.3s ease 0s;
 					color: #cdcdcdfe;
@@ -79,11 +71,12 @@
 			}
 		}
 		.nowPlayingWrapper {
-			position: absolute;
-			right: 0;
-			top: 0;
-			margin-top: 100px;
-			margin-right: 31px;
+			margin-left: 60px;
+			// position: absolute;
+			// right: 0;
+			// top: 0;
+			// margin-top: 100px;
+			// margin-right: 31px;
 		}
 	}
 	.playerWrapper {

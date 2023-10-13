@@ -18,9 +18,14 @@ const SearchInput: React.FC<ISearchInputProps> = ({ className }) => {
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchQueryLocal(e.target.value)
 	}
-	
+
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
+
+		if (searchQuery.trim() === '') {
+			return
+		}
+
 		navigate(`/search/${searchQuery}`)
 		getAccessToken()
 			.then(accessToken => {

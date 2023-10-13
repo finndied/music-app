@@ -11,6 +11,8 @@ import store from './store/store.ts'
 import Player from './components/Player/Player.tsx'
 import Trending from './pages/Trending/Trending.tsx'
 import Search from './pages/Search/Search.tsx'
+import NavigationBar from './components/layout/NavigationBar/NavigationBar.tsx'
+import SearchInput from './components/SearchInput/SearchInput.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<BrowserRouter>
@@ -24,6 +26,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 					<Route path='/album/:id' element={<Album />} />
 					<Route path='/search/:name' element={<Search />} />
 				</Routes>
+				<NavigationBar />
+				<SearchInput />
 				<Player />
 			</React.StrictMode>
 		</Provider>

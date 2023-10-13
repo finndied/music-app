@@ -2,9 +2,7 @@ import { FC, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import getArtistInfo from '../../api/Artist/getArtistInfo'
 import styles from './Artist.module.scss'
-import SearchInput from '../../components/SearchInput/SearchInput'
 import UserMenu from '../../components/UserMenu/UserMenu'
-import NavigationBar from '../../components/layout/NavigationBar/NavigationBar'
 import background from '../../assets/images/background.gif'
 import AlbumList from '../../components/Artist/AlbumList/AlbumList'
 import SingleList from '../../components/Artist/SingleList/SingleList'
@@ -51,7 +49,6 @@ const Artist: FC = () => {
 
 	return (
 		<div className={styles.wrapper}>
-			<NavigationBar />
 			<div
 				className={styles.homeContainer}
 				style={{
@@ -62,7 +59,6 @@ const Artist: FC = () => {
 				}}
 			></div>
 			<div className={styles.homeContent}>
-				<SearchInput className={styles.searchInput} />
 				<UserMenu className={styles.user} />
 				<div className={styles.artistsWrapper}>
 					{isLoading ? (

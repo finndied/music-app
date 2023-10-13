@@ -1,9 +1,7 @@
 import { FC, useEffect, useState } from 'react'
-import NavigationBar from '../../components/layout/NavigationBar/NavigationBar'
 import styles from './Album.module.scss'
 import background from '../../assets/images/background.gif'
 import UserMenu from '../../components/UserMenu/UserMenu'
-import SearchInput from '../../components/SearchInput/SearchInput'
 import { Link, useParams } from 'react-router-dom'
 import getAlbum from '../../api/Artist/getAlbum'
 import getAccessToken from '../../api/apiSpotify'
@@ -71,13 +69,11 @@ const Album: FC = () => {
 
 	return (
 		<div className={styles.wrapper}>
-			<NavigationBar />
 			<div
 				className={styles.homeContainer}
 				style={{ backgroundImage: `url(${currentImage || background})` }}
 			></div>
 			<div className={styles.homeContent}>
-				<SearchInput className={styles.searchInput} />
 				<UserMenu className={styles.user} />
 				<div className={styles.albumWrapper}>
 					{isLoading ? (

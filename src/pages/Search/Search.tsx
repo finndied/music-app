@@ -1,9 +1,7 @@
 import { FC } from 'react'
-import NavigationBar from '../../components/layout/NavigationBar/NavigationBar'
 import styles from './Search.module.scss'
 import background from '../../assets/images/background.gif'
 import UserMenu from '../../components/UserMenu/UserMenu'
-import SearchInput from '../../components/SearchInput/SearchInput'
 import SearchResults from '../../components/SearchResults/SearchResults'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../store/store'
@@ -14,13 +12,11 @@ const Search: FC = () => {
 	)
 	return (
 		<div className={styles.wrapper}>
-			<NavigationBar />
 			<div
 				className={styles.homeContainer}
 				style={{ backgroundImage: `url(${currentImage || background})` }}
 			></div>
 			<div className={styles.homeContent}>
-				<SearchInput className={styles.searchInput} />
 				<UserMenu className={styles.user} />
 				<div className={styles.searchWrapper}>
 					<SearchResults />

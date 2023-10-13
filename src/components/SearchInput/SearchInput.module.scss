@@ -1,6 +1,9 @@
 .searchInput {
 	display: flex;
 	align-items: flex-end;
+	position: absolute;
+	right: 250px;
+	top: 18px;
 	.input {
 		position: relative;
 		color: white;
