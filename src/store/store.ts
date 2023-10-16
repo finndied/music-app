@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import playerReducer from './playerSlice'
 import albumInfoReducer from './albumInfoSlice'
 import artistInfoReducer from './artistInfoSlice'
+import playlistReducer from './playlistSlice'
 import searchReducer from './searchSlice'
 import tracksReducer from './playTracks/TopAndAlbumTracksSlice'
 const store = configureStore({
@@ -10,7 +11,8 @@ const store = configureStore({
 		albumInfo: albumInfoReducer,
 		artistInfo: artistInfoReducer,
 		tracks: tracksReducer,
-		search: searchReducer
+		search: searchReducer,
+		playlist: playlistReducer
 	}
 })
 

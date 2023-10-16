@@ -1,12 +1,24 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { AiFillHome, AiOutlinePlus } from 'react-icons/ai'
 import { PiMicrophoneStage, PiApplePodcastsLogo } from 'react-icons/pi'
 import { BsDiscFill, BsLayers } from 'react-icons/bs'
 import styles from './NavigationBar.module.scss'
 import { Link, useLocation } from 'react-router-dom'
-
+import PlaylistModal from '../../PlaylistModal/PlaylistModal'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../../store/store'
 const NavigationBar: FC = () => {
 	const location = useLocation()
+	const playlists = useSelector((state: RootState) => state.playlist.playlists)
+	const [isModalOpen, setIsModalOpen] = useState(false)
+
+	const openModal = () => {
+		setIsModalOpen(true)
+	}
+
+	const closeModal = () => {
+		setIsModalOpen(false)
+	}
 
 	return (
 		<div className={styles.menu}>
@@ -48,9 +60,18 @@ const NavigationBar: FC = () => {
 				<div className={styles.collection}>
 					<BsLayers /> Your Collections
 				</div>
-				<button>
+				<button onClick={openModal}>
 					<AiOutlinePlus />
 				</button>
+			</div>
+			{isModalOpen && <PlaylistModal closeModal={closeModal} />}
+			<div className={styles.yourCollections}>
+					{playlists.map(playlist => (
+						<div className={styles.playlist} key={playlist.id}>
+						<img src={playlist.image} alt=""/>
+						<div>{playlist.name}</div>
+						</div>
+					))}
 			</div>
 		</div>
 	)
