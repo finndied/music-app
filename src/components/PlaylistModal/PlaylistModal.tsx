@@ -21,7 +21,8 @@ const PlaylistModal: React.FC<{ closeModal: () => void }> = ({
 			id: Date.now(),
 			name: playlistName,
 			image: playlistImage || backgroundImage,
-			file: imageFile
+			file: imageFile,
+			trackIds: [],
 		}
 
 		dispatch(addPlaylist(newPlaylist))
@@ -51,7 +52,7 @@ const PlaylistModal: React.FC<{ closeModal: () => void }> = ({
 					placeholder='Playlist Name'
 					value={playlistName}
 					onChange={e => {
-						if (e.target.value.length <= 15) {
+						if (e.target.value.length <= 13) {
 							setPlaylistName(e.target.value)
 						}
 					}}

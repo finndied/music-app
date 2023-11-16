@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import styles from './TopTracks.module.scss'
 import { ArtistInfo } from '../../../pages/Artist/types'
 import {
@@ -7,7 +7,7 @@ import {
 } from '../../../utils/TimeFormater'
 import { AiFillPlayCircle } from 'react-icons/ai'
 import { MdPlaylistAdd } from 'react-icons/md'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {
 	setCurrentTrack,
 	setCurrentTopTrackIndex,
@@ -16,13 +16,54 @@ import {
 	setCurrentTrackType
 } from '../../../store/playTracks/TopAndAlbumTracksSlice'
 import { setIsPlaying } from '../../../store/playerSlice'
+import { RootState } from '../../../store/store'
+import AddTrackToPlaylistModal from '../../AddTrackToPlaylistModal/AddTrackToPlaylistModal'
 
 interface TopTracksProps {
 	artistInfo: ArtistInfo | null
 }
 
+interface Track {
+	duration_ms: number
+	name: string
+	artists: {
+		name: string
+	}[]
+	id: number
+	track: {
+		id: number
+		album: {
+			coverArt: {
+				sources: { url: string }[]
+			}
+		}
+		name: string
+		artists: {
+			items: {
+				profile: {
+					name: string
+				}
+			}[]
+		}
+		duration: {
+			totalMilliseconds: number
+		}
+	}
+}
+
 const TopTracks: FC<TopTracksProps> = ({ artistInfo }) => {
 	const dispatch = useDispatch()
+	const playlists = useSelector((state: RootState) => state.playlist.playlists)
+
+	const [selectedTrack, setSelectedTrack] = useState<Track | null>(null)
+
+	const openAddToPlaylistModal = (track: Track) => {
+		setSelectedTrack(track)
+	}
+
+	const closeAddToPlaylistModal = () => {
+		setSelectedTrack(null)
+	}
 
 	// Function for playing a top track by index
 	const playTopTrackByIndex = (trackIndex: number) => {
@@ -66,7 +107,7 @@ const TopTracks: FC<TopTracksProps> = ({ artistInfo }) => {
 							{formatNumberWithSpaces(track.track.playcount)}
 						</div>
 						<div className={styles.addToPlaylist}>
-							<MdPlaylistAdd />
+							<MdPlaylistAdd onClick={() => openAddToPlaylistModal(track)} />
 						</div>
 						<div className={styles.trackDuration}>
 							{formatMillisecondsToMinutesSeconds(
@@ -76,6 +117,13 @@ const TopTracks: FC<TopTracksProps> = ({ artistInfo }) => {
 					</div>
 				))}
 			</div>
+			{selectedTrack !== null && (
+				<AddTrackToPlaylistModal
+					playlists={playlists}
+					selectedTrack={selectedTrack}
+					onClose={closeAddToPlaylistModal}
+				/>
+			)}
 		</div>
 	)
 }

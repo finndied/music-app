@@ -24,7 +24,7 @@ const options = {
 		date: '2023-09-28'
 	},
 	headers: {
-		'X-RapidAPI-Key': 'd89f642dc6mshee910d3722e7fc0p1d7429jsne4af5d570e8a',
+		'X-RapidAPI-Key': 'c1d5f0518cmshf0e06dcb90f85b1p1a67fdjsncc20f6f297cc',
 		'X-RapidAPI-Host': 'spotify81.p.rapidapi.com'
 	}
 }

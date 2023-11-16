@@ -67,10 +67,12 @@ const NavigationBar: FC = () => {
 			{isModalOpen && <PlaylistModal closeModal={closeModal} />}
 			<div className={styles.yourCollections}>
 					{playlists.map(playlist => (
-						<div className={styles.playlist} key={playlist.id}>
+						<Link to={`/playlist/${playlist.id}`} key={playlist.id}>
+						<div className={styles.playlist} >
 						<img src={playlist.image} alt=""/>
 						<div>{playlist.name}</div>
 						</div>
+						</Link>
 					))}
 			</div>
 		</div>

@@ -78,6 +78,7 @@
 			flex-wrap: wrap;
 			gap: 10px;
 			.albumCard {
+				position: relative;
 				background: rgba(255, 255, 255, 0);
 				box-shadow: 0 4px 30px rgba(0, 0, 0, 0.221);
 				backdrop-filter: blur(10.1px);
@@ -157,6 +158,7 @@
 			}
          .trackInfo {
             width: 100%;
+				position: relative;
 				align-items: flex-start;
             text-align: start;
             flex-direction: column;
@@ -173,10 +175,10 @@
 				}
 				.addToPlaylist {
                position: absolute;
-               right: 60px;
+               right: 10px;
 					cursor: pointer;
 					font-size: 22px;
-					margin-top: 11.5px;
+					margin-top: 12px;
 					opacity: 0.8;
 					&:hover {
 						transition: color 0.3s ease 0s;

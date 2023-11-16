@@ -12,31 +12,70 @@ import { AiFillPlayCircle } from 'react-icons/ai'
 import { MdPlaylistAdd } from 'react-icons/md'
 import image from '../../assets/images/background.gif'
 import { Link } from 'react-router-dom'
+import AddTrackToPlaylistModal from '../AddTrackToPlaylistModal/AddTrackToPlaylistModal'
+
+interface Track {
+	duration_ms: number
+	name: string
+	artists: {
+		name: string
+	}[]
+	id: number
+	track: {
+		id: number
+		album: {
+			coverArt: {
+				sources: { url: string }[]
+			}
+		}
+		name: string
+		artists: {
+			items: {
+				profile: {
+					name: string
+				}
+			}[]
+		}
+		duration: {
+			totalMilliseconds: number
+		}
+	}
+}
 
 const SearchResults = () => {
-   const [showAllAlbums, setShowAllAlbums] = useState<boolean>(false)
+	const [showAllAlbums, setShowAllAlbums] = useState<boolean>(false)
+
+	const playlists = useSelector((state: RootState) => state.playlist.playlists)
+
+	const [selectedTrack, setSelectedTrack] = useState<Track | null>(null)
+
+	const openAddToPlaylistModal = (track: Track) => {
+		setSelectedTrack(track)
+	}
+
+	const closeAddToPlaylistModal = () => {
+		setSelectedTrack(null)
+	}
 
 	const searchResults = useSelector(
 		(state: RootState) => state.search.searchResults
 	)
-   if (!searchResults) {
+	if (!searchResults) {
 		return <h1>Nothing Found</h1>
 	}
-   
+
 	const maxVisibleAlbums: number = 5
 	const numAlbums = searchResults?.albums.items.length || 0
-   
-   // Determining whether to display arrows to collapse/expand albums
+
+	// Determining whether to display arrows to collapse/expand albums
 	const shouldShowArrows = numAlbums > maxVisibleAlbums
 
 	const toggleShowAllAlbums = () => {
 		setShowAllAlbums(!showAllAlbums)
 	}
-	
 
 	return (
 		<div className={styles.wrapper}>
-
 			<h1>Artists</h1>
 			<div className={styles.artistsWrapper}>
 				{searchResults.artists.items.slice(0, 3).map((artist, index) => (
@@ -93,7 +132,7 @@ const SearchResults = () => {
 							<div className={styles.trackName}>{track.name}</div>
 							<div className={styles.artistName}>{track.artists[0].name}</div>
 							<div className={styles.addToPlaylist}>
-								<MdPlaylistAdd />
+								<MdPlaylistAdd onClick={() => openAddToPlaylistModal(track)} />
 							</div>
 						</div>
 						<div className={styles.trackDuration}>
@@ -102,7 +141,13 @@ const SearchResults = () => {
 					</div>
 				))}
 			</div>
-         
+			{selectedTrack !== null && (
+				<AddTrackToPlaylistModal
+					playlists={playlists}
+					selectedTrack={selectedTrack}
+					onClose={closeAddToPlaylistModal}
+				/>
+			)}
 		</div>
 	)
 }

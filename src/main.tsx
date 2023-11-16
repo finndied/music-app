@@ -13,6 +13,7 @@ import Trending from './pages/Trending/Trending.tsx'
 import Search from './pages/Search/Search.tsx'
 import NavigationBar from './components/layout/NavigationBar/NavigationBar.tsx'
 import SearchInput from './components/SearchInput/SearchInput.tsx'
+import Playlist from './pages/Playlist/Playlist.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<BrowserRouter>
@@ -25,6 +26,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 					<Route path='/trending' element={<Trending />} />
 					<Route path='/album/:id' element={<Album />} />
 					<Route path='/search/:name' element={<Search />} />
+					<Route path='/playlist/:playlistId' element={<Playlist />} />
 				</Routes>
 				<NavigationBar />
 				<SearchInput />

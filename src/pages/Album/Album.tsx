@@ -19,12 +19,53 @@ import { setAlbumInfo } from '../../store/albumInfoSlice'
 import { RootState } from '../../store/store'
 import { setIsPlaying } from '../../store/playerSlice'
 import { setCurrentAlbumTrackIndex } from '../../store/playTracks/TopAndAlbumTracksSlice'
+import AddTrackToPlaylistModal from '../../components/AddTrackToPlaylistModal/AddTrackToPlaylistModal'
+
+interface Track {
+	duration_ms: number
+	name: string
+	artists: {
+		name: string
+	}[]
+	id: number
+	track: {
+		id: number
+		album: {
+			coverArt: {
+				sources: { url: string }[]
+			}
+		}
+		name: string
+		artists: {
+			items: {
+				profile: {
+					name: string
+				}
+			}[]
+		}
+		duration: {
+			totalMilliseconds: number
+		}
+	}
+}
 
 const Album: FC = () => {
 	const { id } = useParams<{ id: string }>()
 	const albumInfo = useSelector((state: RootState) => state.albumInfo)
 	const [isLoading, setIsLoading] = useState<boolean>(true)
 	const dispatch = useDispatch()
+
+	const playlists = useSelector((state: RootState) => state.playlist.playlists)
+
+	const [selectedTrack, setSelectedTrack] = useState<Track | null>(null)
+
+	const openAddToPlaylistModal = (track: Track) => {
+		setSelectedTrack(track)
+	}
+
+	const closeAddToPlaylistModal = () => {
+		setSelectedTrack(null)
+	}
 
 	const currentImage = useSelector(
 		(state: RootState) => state.player.currentImage
@@ -134,7 +175,9 @@ const Album: FC = () => {
 											<div className={styles.trackInfo}>
 												<div className={styles.trackName}>{track.name}</div>
 												<div className={styles.addToPlaylist}>
-													<MdPlaylistAdd />
+													<MdPlaylistAdd
+														onClick={() => openAddToPlaylistModal(track)}
+													/>
 												</div>
 												<div className={styles.trackCount}>
 													{formatMillisecondsToMinutesSeconds(
@@ -150,6 +193,13 @@ const Album: FC = () => {
 					)}
 				</div>
 			</div>
+			{selectedTrack !== null && (
+				<AddTrackToPlaylistModal
+					playlists={playlists}
+					selectedTrack={selectedTrack}
+					onClose={closeAddToPlaylistModal}
+				/>
+			)}
 		</div>
 	)
 }

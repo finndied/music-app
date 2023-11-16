@@ -5,6 +5,7 @@
 	backdrop-filter: blur(10.1px);
 	width: 300px;
 	padding: 20px;
+	position: relative;
 
 	.nowPlaying {
 		display: flex;
@@ -19,7 +20,7 @@
 		object-fit: cover;
 		border-radius: 15px;
 	}
-
+	
 	.trackInfo {
 		display: flex;
 		flex-direction: column;
