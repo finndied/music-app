@@ -15,6 +15,10 @@ import { RootState } from '../../store/store'
 import styles from './Player.module.scss'
 import { ArtistInfo } from '../../pages/Artist/types'
 import { AlbumInfo } from '../../pages/Album/types'
+import {
+	playTrackAsyncSearchResults,
+	setCurrentSearchResultsTrackIndex
+} from '../../store/playTracks/SearchResultsTracksSlice'
 
 interface PlayerControlsProps {
 	audioRef: React.RefObject<HTMLAudioElement | null>
@@ -46,6 +50,11 @@ const PlayerControls: React.FC<PlayerControlsProps> = ({ audioRef }) => {
 		(state: RootState) => state.tracks.currentAlbumTrackIndex
 	)
 
+	const currentSearchResultsTrackIndex = useSelector(
+		(state: RootState) =>
+			state.searchResultsTracks.currentSearchResultsTrackIndex
+	)
+
 	const currentTrackType: string = useSelector(
 		(state: RootState) => state.tracks.currentTrackType
 	)
@@ -55,16 +64,31 @@ const PlayerControls: React.FC<PlayerControlsProps> = ({ audioRef }) => {
 		if (isRandomMode) {
 			playRandomTrack(currentTrackType)
 		} else {
-			if (currentTrackType === 'topTracks') {
-				dispatch(playTopTrackAsync(currentTopTrackIndex + 1))
-				dispatch(setCurrentTopTrackIndex(currentTopTrackIndex + 1))
-			} else if (currentTrackType === 'albumTracks') {
-				dispatch(playTrackAsyncAlbum(currentAlbumTrackIndex + 1))
-				dispatch(setCurrentAlbumTrackIndex(currentAlbumTrackIndex + 1))
+			if (isRepeatMode) {
+				if (audioRef.current) {
+					audioRef.current.currentTime = 0
+					audioRef.current.play()
+				}
+			} else {
+				if (currentTrackType === 'topTracks') {
+					dispatch(playTopTrackAsync(currentTopTrackIndex + 1))
+					dispatch(setCurrentTopTrackIndex(currentTopTrackIndex + 1))
+				} else if (currentTrackType === 'albumTracks') {
+					dispatch(playTrackAsyncAlbum(currentAlbumTrackIndex + 1))
+					dispatch(setCurrentAlbumTrackIndex(currentAlbumTrackIndex + 1))
+				} else if (currentTrackType === 'searchTracks') {
+					dispatch(
+						playTrackAsyncSearchResults(currentSearchResultsTrackIndex + 1)
+					)
+					dispatch(
+						setCurrentSearchResultsTrackIndex(
+							currentSearchResultsTrackIndex + 1
+						)
+					)
+				}
 			}
 		}
 	}
-
 	// Function for playing the previous track
 	const playPreviousTrack = () => {
 		if (currentTrackType === 'topTracks') {
@@ -73,6 +97,11 @@ const PlayerControls: React.FC<PlayerControlsProps> = ({ audioRef }) => {
 		} else if (currentTrackType === 'albumTracks') {
 			dispatch(playTrackAsyncAlbum(currentAlbumTrackIndex - 1))
 			dispatch(setCurrentAlbumTrackIndex(currentAlbumTrackIndex - 1))
+		} else if (currentTrackType === 'searchTracks') {
+			dispatch(playTrackAsyncSearchResults(currentSearchResultsTrackIndex - 1))
+			dispatch(
+				setCurrentSearchResultsTrackIndex(currentSearchResultsTrackIndex - 1)
+			)
 		}
 	}
 

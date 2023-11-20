@@ -75,7 +75,6 @@ const TopTracks: FC<TopTracksProps> = ({ artistInfo }) => {
 			)
 			dispatch(setCurrentTopTrackIndex(trackIndex))
 			dispatch(setCurrentTrackType('topTracks'))
-			console.log(trackIndex)
 			dispatch(playTopTrackAsync(trackIndex))
 		} catch (error) {
 			console.error('Error playing top track:', error)

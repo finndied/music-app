@@ -9,15 +9,19 @@ import PlayerControls from './PlayerControls'
 import VolumeControl from './VolumeControl'
 import { Link } from 'react-router-dom'
 import LoaderName from '../../utils/LoaderName'
+
 const Player: FC = () => {
 	const audioRef = useRef<HTMLAudioElement | null>(null)
-	// const MyLoader = () => <ContentLoader />
 	const currentImage = useSelector(
 		(state: RootState) => state.player.currentImage
 	)
-	const currentTrack = useSelector(
-		(state: RootState) => state.tracks.currentTrack
-	)
+	const currentTrack = useSelector((state: RootState) => {
+		const tracksCurrentTrack = state.tracks.currentTrack
+		const searchResultsTracksCurrentTrack =
+			state.searchResultsTracks.currentTrack
+
+		return tracksCurrentTrack || searchResultsTracksCurrentTrack
+	})
 
 	return (
 		<div className={styles.playerWrapper}>
@@ -27,7 +31,7 @@ const Player: FC = () => {
 					<div className={styles.trackTitle}>
 						{currentTrack?.track
 							? currentTrack.track.name
-							: currentTrack?.name || <LoaderName/>}
+							: currentTrack?.name || <LoaderName />}
 					</div>
 					<div className={styles.trackArtist}>
 						{currentTrack?.track ? (
@@ -37,15 +41,16 @@ const Player: FC = () => {
 									''
 								)}`}
 							>
-								{currentTrack?.track?.artists?.items[0]?.profile?.name ||
-									<LoaderName/>}
+								{currentTrack?.track?.artists?.items[0]?.profile?.name || (
+									<LoaderName />
+								)}
 							</Link>
 						) : currentTrack?.artists && currentTrack.artists.length > 0 ? (
 							<Link to={`/artist/${currentTrack.artists[0]?.id}`}>
 								{currentTrack.artists[0]?.name}
 							</Link>
 						) : (
-							<LoaderName/>
+							<LoaderName />
 						)}
 					</div>
 				</div>

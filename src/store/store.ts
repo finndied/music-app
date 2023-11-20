@@ -5,6 +5,7 @@ import artistInfoReducer from './artistInfoSlice'
 import playlistReducer from './playlistSlice'
 import searchReducer from './searchSlice'
 import tracksReducer from './playTracks/TopAndAlbumTracksSlice'
+import searchResultsTracksReducer from './playTracks/SearchResultsTracksSlice'
 const store = configureStore({
 	reducer: {
 		player: playerReducer,
@@ -12,7 +13,8 @@ const store = configureStore({
 		artistInfo: artistInfoReducer,
 		tracks: tracksReducer,
 		search: searchReducer,
-		playlist: playlistReducer
+		playlist: playlistReducer,
+		searchResultsTracks: searchResultsTracksReducer,
 	}
 })
 

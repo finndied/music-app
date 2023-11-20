@@ -18,7 +18,6 @@ interface Track {
 				profile: {
 					name: string
 				}
-				uri: string
 			}[]
 		}
 	}

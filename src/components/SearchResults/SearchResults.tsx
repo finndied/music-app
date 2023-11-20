@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import styles from './SearchResults.module.scss'
 import { RootState } from '../../store/store'
 import { BiDownArrowAlt, BiUpArrowAlt } from 'react-icons/bi'
@@ -13,6 +13,14 @@ import { MdPlaylistAdd } from 'react-icons/md'
 import image from '../../assets/images/background.gif'
 import { Link } from 'react-router-dom'
 import AddTrackToPlaylistModal from '../AddTrackToPlaylistModal/AddTrackToPlaylistModal'
+import {
+	playTrackAsyncSearchResults,
+	setCurrentSearchResultsTrackIndex,
+	setCurrentTrack,
+	setSearchResultsTracks
+} from '../../store/playTracks/SearchResultsTracksSlice'
+import { setCurrentTrackType } from '../../store/playTracks/SearchResultsTracksSlice'
+import { setIsPlaying } from '../../store/playerSlice'
 
 interface Track {
 	duration_ms: number
@@ -43,11 +51,25 @@ interface Track {
 }
 
 const SearchResults = () => {
+	const dispatch = useDispatch()
 	const [showAllAlbums, setShowAllAlbums] = useState<boolean>(false)
-
 	const playlists = useSelector((state: RootState) => state.playlist.playlists)
 
 	const [selectedTrack, setSelectedTrack] = useState<Track | null>(null)
+
+	const playSearchResultsTrackByIndex = (trackIndex: number) => {
+		try {
+			dispatch(setIsPlaying(true))
+			dispatch(setCurrentTrack(trackIndex))
+			dispatch(setSearchResultsTracks(searchResults?.tracks.items || []))
+			dispatch(setCurrentSearchResultsTrackIndex(trackIndex))
+			dispatch(setCurrentTrackType('searchTracks'))
+			dispatch(playTrackAsyncSearchResults(trackIndex))
+		} catch (error) {
+			console.error('Error playing search results track:', error)
+			throw error
+		}
+	}
 
 	const openAddToPlaylistModal = (track: Track) => {
 		setSelectedTrack(track)
@@ -124,7 +146,10 @@ const SearchResults = () => {
 			<div className={styles.tracksWrapper}>
 				{searchResults.tracks.items.map((track, index) => (
 					<div key={index} className={styles.trackCard}>
-						<div className={styles.play}>
+						<div
+							className={styles.play}
+							onClick={() => playSearchResultsTrackByIndex(index)}
+						>
 							<AiFillPlayCircle />
 						</div>
 						<img src={track.album.images[0].url} alt='' />
