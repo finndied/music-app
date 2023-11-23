@@ -9,6 +9,7 @@ import PlayerControls from './PlayerControls'
 import VolumeControl from './VolumeControl'
 import { Link } from 'react-router-dom'
 import LoaderName from '../../utils/LoaderName'
+import { Track } from '../Artist/TopTracks/TopTracks'
 
 const Player: FC = () => {
 	const audioRef = useRef<HTMLAudioElement | null>(null)
@@ -19,9 +20,13 @@ const Player: FC = () => {
 		const tracksCurrentTrack = state.tracks.currentTrack
 		const searchResultsTracksCurrentTrack =
 			state.searchResultsTracks.currentTrack
-
-		return tracksCurrentTrack || searchResultsTracksCurrentTrack
-	})
+		const playlistCurrentTrack = state.playlistTracks.currentTrack
+		return (
+			tracksCurrentTrack ||
+			searchResultsTracksCurrentTrack ||
+			playlistCurrentTrack
+		)
+	}) as Track | null
 
 	return (
 		<div className={styles.playerWrapper}>

@@ -21,34 +21,7 @@ import {
 } from '../../store/playTracks/SearchResultsTracksSlice'
 import { setCurrentTrackType } from '../../store/playTracks/SearchResultsTracksSlice'
 import { setIsPlaying } from '../../store/playerSlice'
-
-interface Track {
-	duration_ms: number
-	name: string
-	artists: {
-		name: string
-	}[]
-	id: number
-	track: {
-		id: number
-		album: {
-			coverArt: {
-				sources: { url: string }[]
-			}
-		}
-		name: string
-		artists: {
-			items: {
-				profile: {
-					name: string
-				}
-			}[]
-		}
-		duration: {
-			totalMilliseconds: number
-		}
-	}
-}
+import { Track } from '../Artist/TopTracks/TopTracks'
 
 const SearchResults = () => {
 	const dispatch = useDispatch()
@@ -64,7 +37,7 @@ const SearchResults = () => {
 			dispatch(setSearchResultsTracks(searchResults?.tracks.items || []))
 			dispatch(setCurrentSearchResultsTrackIndex(trackIndex))
 			dispatch(setCurrentTrackType('searchTracks'))
-			dispatch(playTrackAsyncSearchResults(trackIndex))
+			dispatch(playTrackAsyncSearchResults(trackIndex) as any)
 		} catch (error) {
 			console.error('Error playing search results track:', error)
 			throw error

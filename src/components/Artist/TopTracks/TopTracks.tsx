@@ -23,10 +23,11 @@ interface TopTracksProps {
 	artistInfo: ArtistInfo | null
 }
 
-interface Track {
+export interface Track {
 	duration_ms: number
 	name: string
 	artists: {
+		id: string
 		name: string
 	}[]
 	id: number
@@ -40,6 +41,7 @@ interface Track {
 		name: string
 		artists: {
 			items: {
+				uri: string
 				profile: {
 					name: string
 				}
@@ -75,7 +77,7 @@ const TopTracks: FC<TopTracksProps> = ({ artistInfo }) => {
 			)
 			dispatch(setCurrentTopTrackIndex(trackIndex))
 			dispatch(setCurrentTrackType('topTracks'))
-			dispatch(playTopTrackAsync(trackIndex))
+			dispatch(playTopTrackAsync(trackIndex) as any)
 		} catch (error) {
 			console.error('Error playing top track:', error)
 			throw error

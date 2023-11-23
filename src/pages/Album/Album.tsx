@@ -20,34 +20,7 @@ import { RootState } from '../../store/store'
 import { setIsPlaying } from '../../store/playerSlice'
 import { setCurrentAlbumTrackIndex } from '../../store/playTracks/TopAndAlbumTracksSlice'
 import AddTrackToPlaylistModal from '../../components/AddTrackToPlaylistModal/AddTrackToPlaylistModal'
-
-interface Track {
-	duration_ms: number
-	name: string
-	artists: {
-		name: string
-	}[]
-	id: number
-	track: {
-		id: number
-		album: {
-			coverArt: {
-				sources: { url: string }[]
-			}
-		}
-		name: string
-		artists: {
-			items: {
-				profile: {
-					name: string
-				}
-			}[]
-		}
-		duration: {
-			totalMilliseconds: number
-		}
-	}
-}
+import { Track } from '../../components/Artist/TopTracks/TopTracks'
 
 const Album: FC = () => {
 	const { id } = useParams<{ id: string }>()
@@ -72,7 +45,7 @@ const Album: FC = () => {
 	)
 
 	const currentAlbumTrackIndex =
-		useSelector((state: RootState) => state.tracks.currentAlbumTrackIndex) || 0
+		useSelector((state: RootState) => state.playlistTracks.playlistTracks) || 0
 
 	// Function for track playback
 	const playAlbumTrackByIndex = (trackIndex: number) => {
@@ -82,7 +55,7 @@ const Album: FC = () => {
 			dispatch(setAlbumTracks(albumInfo?.tracks.items || []))
 			dispatch(setCurrentTrackType('albumTracks'))
 			console.log(trackIndex)
-			dispatch(playTrackAsyncAlbum(trackIndex))
+			dispatch(playTrackAsyncAlbum(trackIndex) as any)
 		} catch (error) {
 			console.error('Error playing album track:', error)
 			throw error

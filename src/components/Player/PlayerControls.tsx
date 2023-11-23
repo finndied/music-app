@@ -19,6 +19,10 @@ import {
 	playTrackAsyncSearchResults,
 	setCurrentSearchResultsTrackIndex
 } from '../../store/playTracks/SearchResultsTracksSlice'
+import {
+	playTrackAsyncPlaylist,
+	setCurrentPlaylistTrackIndex
+} from '../../store/playTracks/PlaylistTracksSlice'
 
 interface PlayerControlsProps {
 	audioRef: React.RefObject<HTMLAudioElement | null>
@@ -50,6 +54,10 @@ const PlayerControls: React.FC<PlayerControlsProps> = ({ audioRef }) => {
 		(state: RootState) => state.tracks.currentAlbumTrackIndex
 	)
 
+	const currentPlaylistTrackIndex = useSelector(
+		(state: RootState) => state.playlistTracks.currentPlaylistTrackIndex
+	)
+
 	const currentSearchResultsTrackIndex = useSelector(
 		(state: RootState) =>
 			state.searchResultsTracks.currentSearchResultsTrackIndex
@@ -70,38 +78,66 @@ const PlayerControls: React.FC<PlayerControlsProps> = ({ audioRef }) => {
 					audioRef.current.play()
 				}
 			} else {
-				if (currentTrackType === 'topTracks') {
-					dispatch(playTopTrackAsync(currentTopTrackIndex + 1))
+				if (currentTrackType === 'topTracks' && currentTopTrackIndex !== null) {
+					dispatch(playTopTrackAsync(currentTopTrackIndex + 1) as any)
 					dispatch(setCurrentTopTrackIndex(currentTopTrackIndex + 1))
-				} else if (currentTrackType === 'albumTracks') {
-					dispatch(playTrackAsyncAlbum(currentAlbumTrackIndex + 1))
+				} else if (
+					currentTrackType === 'albumTracks' &&
+					currentAlbumTrackIndex !== null
+				) {
+					dispatch(playTrackAsyncAlbum(currentAlbumTrackIndex + 1) as any)
 					dispatch(setCurrentAlbumTrackIndex(currentAlbumTrackIndex + 1))
-				} else if (currentTrackType === 'searchTracks') {
+				} else if (
+					currentTrackType === 'searchTracks' &&
+					currentSearchResultsTrackIndex !== null
+				) {
 					dispatch(
-						playTrackAsyncSearchResults(currentSearchResultsTrackIndex + 1)
+						playTrackAsyncSearchResults(
+							currentSearchResultsTrackIndex + 1
+						) as any
 					)
 					dispatch(
 						setCurrentSearchResultsTrackIndex(
 							currentSearchResultsTrackIndex + 1
 						)
 					)
+				} else if (
+					currentTrackType === 'playlistTracks' &&
+					currentPlaylistTrackIndex !== null
+				) {
+					dispatch(playTrackAsyncPlaylist(currentPlaylistTrackIndex + 1) as any)
+					dispatch(setCurrentPlaylistTrackIndex(currentPlaylistTrackIndex + 1))
 				}
 			}
 		}
 	}
 	// Function for playing the previous track
 	const playPreviousTrack = () => {
-		if (currentTrackType === 'topTracks') {
-			dispatch(playTopTrackAsync(currentTopTrackIndex - 1))
+		if (currentTrackType === 'topTracks' && currentTopTrackIndex !== null) {
+			dispatch(playTopTrackAsync(currentTopTrackIndex - 1) as any)
 			dispatch(setCurrentTopTrackIndex(currentTopTrackIndex - 1))
-		} else if (currentTrackType === 'albumTracks') {
-			dispatch(playTrackAsyncAlbum(currentAlbumTrackIndex - 1))
+		} else if (
+			currentTrackType === 'albumTracks' &&
+			currentAlbumTrackIndex !== null
+		) {
+			dispatch(playTrackAsyncAlbum(currentAlbumTrackIndex - 1) as any)
 			dispatch(setCurrentAlbumTrackIndex(currentAlbumTrackIndex - 1))
-		} else if (currentTrackType === 'searchTracks') {
-			dispatch(playTrackAsyncSearchResults(currentSearchResultsTrackIndex - 1))
+		} else if (
+			currentTrackType === 'searchTracks' &&
+			currentSearchResultsTrackIndex !== null
+		) {
+			dispatch(
+				playTrackAsyncSearchResults(currentSearchResultsTrackIndex - 1) as any
+			)
 			dispatch(
 				setCurrentSearchResultsTrackIndex(currentSearchResultsTrackIndex - 1)
 			)
+		} else if (
+			currentTrackType === 'playlistTracks' &&
+			currentPlaylistTrackIndex !== null
+		) {
+			dispatch(playTrackAsyncPlaylist(currentPlaylistTrackIndex - 1) as any)
+			dispatch(setCurrentPlaylistTrackIndex(currentPlaylistTrackIndex - 1))
 		}
 	}
 
@@ -151,9 +187,9 @@ const PlayerControls: React.FC<PlayerControlsProps> = ({ audioRef }) => {
 				const randomTrackIndex = trackIndexes[randomIndex]
 
 				if (trackType === 'topTracks') {
-					dispatch(playTopTrackAsync(randomTrackIndex))
+					dispatch(playTopTrackAsync(randomTrackIndex) as any)
 				} else if (trackType === 'albumTracks') {
-					dispatch(playTrackAsyncAlbum(randomTrackIndex))
+					dispatch(playTrackAsyncAlbum(randomTrackIndex) as any)
 				}
 			}
 		}
