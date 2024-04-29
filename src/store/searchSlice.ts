@@ -75,7 +75,10 @@ const searchSlice = createSlice({
 })
 
 export const searchAsync =
-	(accessToken: string, query: string) => async dispatch => {
+	(accessToken: string, query: string) =>
+	async (
+		dispatch: (arg0: { payload: any; type: 'search/setSearchResults' }) => void
+	) => {
 		try {
 			const searchResults = await search(accessToken, query)
 			dispatch(setSearchResults(searchResults))
